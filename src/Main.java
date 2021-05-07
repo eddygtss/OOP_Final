@@ -71,10 +71,23 @@ public class Main {
                     }
                 }
                 case "B" -> {
-
+                    if (ships.isEmpty()) {
+                        System.out.println("No ships currently registered, please add a ship first.");
+                        break;
+                    }
+                    for (Ship ship:ships) {
+                        if (ship.inService)
+                            System.out.println(ship.getShipName());
+                    }
                 }
                 case "C" -> {
-
+                    if (ships.isEmpty()) {
+                        System.out.println("No ships currently registered, please add a ship first.");
+                        break;
+                    }
+                    for (Ship ship:ships) {
+                        System.out.println(ship);
+                    }
                 }
                 case "D" -> {
 
