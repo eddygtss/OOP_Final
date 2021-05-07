@@ -6,10 +6,7 @@ public class Main {
 
     public static void main(String[] args) {
         String ans, name, dob;
-        boolean inServ;
-        ArrayList<Passenger> passengers = new ArrayList<>();
         ArrayList<Ship> ships = new ArrayList<>();
-        ArrayList<Cruise> cruises = new ArrayList<>();
         Scanner input = new Scanner(System.in);
 
         while (true){
@@ -37,24 +34,55 @@ public class Main {
 
             switch (ans){
                 case "1" -> {
-                    System.out.print("Please enter a name for the ship: ");
-                    name = input.nextLine();
-                    System.out.print("Will this ship be in service immediately? (Y/N): ");
-                    inServ = input.nextLine().toLowerCase(Locale.ROOT).equals("y");
-
-                    Ship ship = new Ship(name, inServ, passengers);
-
-                    ships.add(ship);
+                    ships.add(createNewShip(input));
                 }
                 case "2" -> {
                     int count = 0;
                     for (Ship ship:ships) {
-                        System.out.println("#" + count + " :" + ship);
+                        System.out.println("#" + count + "" + ship);
+                        count++;
                     }
-                    System.out.println("Which ship would you like to edit?: ");
-                    ans = input.nextLine();
+                    System.out.print("Which ship would you like to edit?: ");
+                    int edit = Integer.parseInt(input.nextLine());
 
+                    ships.remove(edit);
 
+                    ships.add(edit, createNewShip(input));
+                }
+                case "3" -> {
+
+                }
+                case "4" -> {
+
+                }
+                case "5" -> {
+
+                }
+                case "6" -> {
+
+                }
+                case "A" -> {
+                    if (ships.isEmpty()) {
+                        System.out.println("No ships currently registered, please add a ship first.");
+                        break;
+                    }
+                    for (Ship ship:ships) {
+                        System.out.println(ship.getShipName());
+                    }
+                }
+                case "B" -> {
+
+                }
+                case "C" -> {
+
+                }
+                case "D" -> {
+
+                }
+                case "E" -> {
+
+                }
+                case "F" -> {
 
                 }
             }
@@ -62,5 +90,20 @@ public class Main {
 
 
         }
+    }
+
+    public static Ship createNewShip(Scanner input) {
+        String name;
+        boolean inServ;
+        int passengerLimit;
+        System.out.print("Please enter a name for the ship: ");
+        name = input.nextLine();
+        System.out.print("Will this ship be in service immediately? (Y/N): ");
+        inServ = input.nextLine().toLowerCase(Locale.ROOT).equals("y");
+        System.out.print("Please enter the amount of passenger cabins available on this ship: ");
+        passengerLimit = input.nextInt();
+        input.nextLine();
+
+        return new Ship(name, inServ, passengerLimit);
     }
 }

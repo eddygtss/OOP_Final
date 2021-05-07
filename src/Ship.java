@@ -1,22 +1,23 @@
 import java.util.ArrayList;
 
 public class Ship {
-    String name;
+    String shipName;
     Boolean inService;
-    ArrayList<Passenger> passengers;
+    int passengerCabin;
+    ArrayList<Cruise> cruises;
 
-    public Ship(String name, Boolean inService, ArrayList<Passenger> passengers) {
-        this.name = name;
+    public Ship(String shipName, Boolean inService, int passengerCabin) {
+        this.shipName = shipName;
         this.inService = inService;
-        this.passengers = passengers;
+        this.passengerCabin = passengerCabin;
     }
 
-    public String getName() {
-        return name;
+    public String getShipName() {
+        return shipName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setShipName(String shipName) {
+        this.shipName = shipName;
     }
 
     public Boolean getInService() {
@@ -27,18 +28,27 @@ public class Ship {
         this.inService = inService;
     }
 
-    public ArrayList<Passenger> getPassengers() {
-        return passengers;
+    public int getPassengerCabin() {
+        return passengerCabin;
     }
 
-    public void setPassengers(ArrayList<Passenger> passengers) {
-        this.passengers = passengers;
+    public void setPassengerCabin(int passengerCabin) {
+        this.passengerCabin = passengerCabin;
+    }
+
+    public ArrayList<Cruise> getCruises() {
+        return cruises;
+    }
+
+    public void setCruises(ArrayList<Cruise> cruises) {
+        this.cruises = cruises;
     }
 
     @Override
     public String toString() {
-        return "Ship " +
-                "name: " + name +
-                ", in service: " + inService;
+        return "Ship name: " + shipName +
+                ", in service: " + inService +
+                ", Available Cabin: " + passengerCabin +
+                ", Cruises: " + cruises;
     }
 }
