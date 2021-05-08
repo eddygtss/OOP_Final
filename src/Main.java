@@ -7,6 +7,9 @@ public class Main {
     public static void main(String[] args) {
         String ans, name, dob;
         ArrayList<Ship> ships = new ArrayList<>();
+        ArrayList<Ship> shipsInServ = new ArrayList<>();
+        ArrayList<Cruise> cruises = new ArrayList<>();
+
         Scanner input = new Scanner(System.in);
 
         while (true){
@@ -33,25 +36,24 @@ public class Main {
             }
 
             switch (ans){
-                case "1" -> {
-                    ships.add(createNewShip(input));
-                }
+                case "1" -> ships.add(createNewShip(input, shipsInServ));
                 case "2" -> {
                     int count = 0;
                     for (Ship ship:ships) {
-                        System.out.println("#" + count + "" + ship);
+                        System.out.println("#" + count + " " + ship);
                         count++;
                     }
                     System.out.print("Which ship would you like to edit?: ");
-                    int edit = Integer.parseInt(input.nextLine());
+                    int selection = Integer.parseInt(input.nextLine());
 
-                    ships.remove(edit);
+                    shipsInServ.remove(ships.get(selection));
 
-                    ships.add(edit, createNewShip(input));
+                    ships.remove(selection);
+
+
+                    ships.add(selection, createNewShip(input, shipsInServ));
                 }
-                case "3" -> {
-
-                }
+                case "3" -> cruises.add(createNewCruise(input, shipsInServ));
                 case "4" -> {
 
                 }
@@ -75,10 +77,12 @@ public class Main {
                         System.out.println("No ships currently registered, please add a ship first.");
                         break;
                     }
-                    for (Ship ship:ships) {
-                        if (ship.inService)
-                            System.out.println(ship.getShipName());
+                    System.out.println("-------------------------------------");
+                    System.out.println("Ships Currently In Service");
+                    for (Ship ship:shipsInServ) {
+                        System.out.println(ship);
                     }
+                    System.out.println("-------------------------------------");
                 }
                 case "C" -> {
                     if (ships.isEmpty()) {
@@ -105,7 +109,7 @@ public class Main {
         }
     }
 
-    public static Ship createNewShip(Scanner input) {
+    public static Ship createNewShip(Scanner input, ArrayList<Ship> shipsInService) {
         String name;
         boolean inServ;
         int passengerLimit;
@@ -117,6 +121,39 @@ public class Main {
         passengerLimit = input.nextInt();
         input.nextLine();
 
-        return new Ship(name, inServ, passengerLimit);
+        Ship newShip = new Ship(name, inServ, passengerLimit);
+
+        if (inServ)
+            shipsInService.add(newShip);
+
+        return newShip;
+    }
+
+    public static Cruise createNewCruise(Scanner input, ArrayList<Ship> shipsInService) {
+        String name;
+        System.out.print("Please enter a name for the cruise: ");
+        name = input.nextLine();
+
+        Cruise newCruise = new Cruise(name);
+
+        System.out.println("Please assign this cruise to a ship");
+        System.out.println("-------------------------------------");
+        System.out.println("Current Ships In Service");
+
+        int count = 0;
+        for (Ship ship:shipsInService) {
+            System.out.println("#" + count + " " + ship);
+            count++;
+        }
+        System.out.println("-------------------------------------");
+
+        System.out.println("Please enter your selection: ");
+        int selection = input.nextInt();
+        input.nextLine();
+
+        ArrayList<Cruise> shipsCruises = shipsInService.get(selection).getCruises();
+        shipsCruises.add(newCruise);
+
+        return newCruise;
     }
 }

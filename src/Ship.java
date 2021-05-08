@@ -1,10 +1,10 @@
 import java.util.ArrayList;
 
 public class Ship {
-    String shipName;
-    Boolean inService;
-    int passengerCabin;
-    ArrayList<Cruise> cruises;
+    private String shipName;
+    private Boolean inService;
+    private int passengerCabin;
+    private ArrayList<Cruise> cruises = new ArrayList<>();
 
     public Ship(String shipName, Boolean inService, int passengerCabin) {
         this.shipName = shipName;

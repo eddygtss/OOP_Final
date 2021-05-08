@@ -2,11 +2,10 @@ import java.util.ArrayList;
 
 public class Cruise {
     String cruiseName;
-    ArrayList<Passenger> passengers;
+    ArrayList<Passenger> passengers = new ArrayList<>();
 
-    public Cruise(String cruiseName, ArrayList<Passenger> passengers) {
+    public Cruise(String cruiseName) {
         this.cruiseName = cruiseName;
-        this.passengers = passengers;
     }
 
     public String getCruiseName() {
@@ -27,9 +26,7 @@ public class Cruise {
 
     @Override
     public String toString() {
-        return "Cruise{" +
-                "cruiseName='" + cruiseName + '\'' +
-                ", passengers=" + passengers +
-                '}';
+        return "Cruise Name: " + cruiseName +
+                ", Passengers: " + passengers;
     }
 }
