@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-        String ans, name, dob;
+        String ans;
         ArrayList<Ship> ships = new ArrayList<>();
         ArrayList<Ship> shipsInServ = new ArrayList<>();
         ArrayList<Cruise> cruises = new ArrayList<>();
