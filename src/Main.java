@@ -1,3 +1,13 @@
+/*
+Program Name: Luxury Vacation Cruise
+Purpose: A cruise management system which handles ships, cruises and passengers.
+
+By: Eddy Herrera
+Date: 5/5/2021
+
+ */
+
+
 import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Scanner;
@@ -42,7 +52,7 @@ public class Main {
                     if (ships.isEmpty()) {
                         System.out.println("Error! There are currently no ships registered, please add a ship!");
                     } else {
-
+                        // We print out all of the ships to make a selection.
                         int count = 1;
                         for (Ship ship : ships) {
                             System.out.println("#" + count + " " + ship);
@@ -51,14 +61,17 @@ public class Main {
                         System.out.print("Which ship would you like to edit?: ");
                         int selection = Integer.parseInt(input.nextLine()) - 1;
 
+                        // Assigning the selected ship to a temporary object.
                         Ship selectedShip = ships.get(selection);
 
+                        // Updating ship name just calls the setter from the class.
                         System.out.print("Update Ship Name? (Y/N):");
                         ans = input.nextLine();
                         if (ans.toLowerCase(Locale.ROOT).equals("y")) {
                             System.out.print("Please enter a ship name: ");
                             selectedShip.setShipName(input.nextLine());
                         }
+                        // Updating service status checks if the status was already true or false and updates the status.
                         System.out.print("Update in service status? (Y/N):");
                         ans = input.nextLine();
                         if (ans.toLowerCase(Locale.ROOT).equals("y")) {
@@ -66,14 +79,17 @@ public class Main {
                             ans = input.nextLine();
                             if (ans.toLowerCase(Locale.ROOT).equals("y")) {
                                 selectedShip.setInService(true);
+                                // We want to add the ship to the in service array list.
                                 if (!shipsInServ.contains(selectedShip)){
                                     shipsInServ.add(selectedShip);
                                 }
                             } else {
+                                // Here we remove the ship from in service array list.
                                 selectedShip.setInService(false);
                                 shipsInServ.remove(selectedShip);
                             }
                         }
+                        // Updating passenger cabin space by calling the setter from the class.
                         System.out.print("Update passenger cabin space? (Y/N):");
                         ans = input.nextLine();
                         if (ans.toLowerCase(Locale.ROOT).equals("y")) {
@@ -84,7 +100,7 @@ public class Main {
 
                     }
                 }
-                case "3" -> cruises.add(createNewCruise(input, shipsInServ));
+                case "3" -> cruises.add(createNewCruise(input, shipsInServ)); // Creating new cruise.
                 case "4" -> {
                     if (cruises.isEmpty()) {
                         System.out.println("Error! There are currently no cruises registered, please add one!");
@@ -98,6 +114,7 @@ public class Main {
                         System.out.print("Which cruise would you like to edit?: ");
                         int selection = Integer.parseInt(input.nextLine()) - 1;
 
+                        // Using temporary object to refer to the selection.
                         Cruise selectedCruise = cruises.get(selection);
 
                         System.out.print("Update Cruise Name? (Y/N):");
@@ -106,6 +123,7 @@ public class Main {
                             System.out.print("Please enter a cruise name: ");
                             selectedCruise.setCruiseName(input.nextLine());
                         }
+                        // Reassigning the cruise we must remove the cruise from previous ship.
                         System.out.print("Reassign the cruise? (Y/N):");
                         ans = input.nextLine();
                         if (ans.toLowerCase(Locale.ROOT).equals("y")) {
@@ -114,7 +132,7 @@ public class Main {
                             }
                             else {
                                 for (Ship ship : ships) {
-                                    ship.getCruises().remove(selectedCruise);
+                                    ship.getCruises().remove(selectedCruise); // Removing from previous ship.
                                 }
                                 System.out.println("-------------------------------------");
                                 System.out.println("Current Ships In Service");
@@ -139,7 +157,7 @@ public class Main {
                         }
                     }
                 }
-                case "5" -> passengers.add(createNewPassenger(input, cruises, ships));
+                case "5" -> passengers.add(createNewPassenger(input, cruises, ships)); // Creating new passenger.
                 case "6" -> {
                     if (passengers.isEmpty()) {
                         System.out.println("Error! There are currently no passengers registered, please add one!");
@@ -163,9 +181,13 @@ public class Main {
                         System.out.println("No ships currently registered, please add a ship first.");
                         break;
                     }
+                    System.out.println("-------------------------------------");
+                    System.out.println("Ships");
+                    // Printing all of the ship names
                     for (Ship ship:ships) {
                         System.out.println(ship.getShipName());
                     }
+                    System.out.println("-------------------------------------");
                 }
                 case "B" -> {
                     if (ships.isEmpty()) {
@@ -184,36 +206,48 @@ public class Main {
                         System.out.println("No ships currently registered, please add a ship first.");
                         break;
                     }
+                    System.out.println("-------------------------------------");
+                    System.out.println("Ship Details");
                     for (Ship ship:ships) {
                         System.out.println(ship);
                     }
+                    System.out.println("-------------------------------------");
                 }
                 case "D" -> {
                     if (cruises.isEmpty()) {
                         System.out.println("No cruises are currently registered, please add a cruise first.");
                         break;
                     }
+                    System.out.println("-------------------------------------");
+                    System.out.println("Cruises");
                     for (Cruise cruise:cruises) {
                         System.out.println(cruise.getCruiseName());
                     }
+                    System.out.println("-------------------------------------");
                 }
                 case "E" -> {
                     if (cruises.isEmpty()) {
                         System.out.println("No cruises are currently registered, please add a cruise first.");
                         break;
                     }
+                    System.out.println("-------------------------------------");
+                    System.out.println("Cruise Details");
                     for (Cruise cruise:cruises) {
                         System.out.println(cruise);
                     }
+                    System.out.println("-------------------------------------");
                 }
                 case "F" -> {
                     if (passengers.isEmpty()) {
                         System.out.println("No passengers are currently registered, please add a passenger first.");
                         break;
                     }
+                    System.out.println("-------------------------------------");
+                    System.out.println("Passengers");
                     for (Passenger passenger:passengers) {
                         System.out.println(passenger);
                     }
+                    System.out.println("-------------------------------------");
                 }
             }
 
