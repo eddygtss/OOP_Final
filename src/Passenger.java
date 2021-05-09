@@ -1,5 +1,10 @@
 public class Passenger {
-    String name, dob;
+    private String name, dob;
+
+    public Passenger(String name, String dob) {
+        this.name = name;
+        this.dob = dob;
+    }
 
     public String getName() {
         return name;
@@ -19,9 +24,7 @@ public class Passenger {
 
     @Override
     public String toString() {
-        return "Passenger{" +
-                "name='" + name + '\'' +
-                ", dob='" + dob + '\'' +
-                '}';
+        return "Name: " + name +
+                ", DOB: " + dob;
     }
 }

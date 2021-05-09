@@ -1,8 +1,8 @@
 import java.util.ArrayList;
 
 public class Cruise {
-    String cruiseName;
-    ArrayList<Passenger> passengers = new ArrayList<>();
+    private String cruiseName;
+    private ArrayList<Passenger> passengers = new ArrayList<>();
 
     public Cruise(String cruiseName) {
         this.cruiseName = cruiseName;

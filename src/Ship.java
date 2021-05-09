@@ -3,13 +3,13 @@ import java.util.ArrayList;
 public class Ship {
     private String shipName;
     private Boolean inService;
-    private int passengerCabin;
+    private int availableCabin, currentCabin = 0;
     private ArrayList<Cruise> cruises = new ArrayList<>();
 
-    public Ship(String shipName, Boolean inService, int passengerCabin) {
+    public Ship(String shipName, Boolean inService, int availableCabin) {
         this.shipName = shipName;
         this.inService = inService;
-        this.passengerCabin = passengerCabin;
+        this.availableCabin = availableCabin;
     }
 
     public String getShipName() {
@@ -28,12 +28,20 @@ public class Ship {
         this.inService = inService;
     }
 
-    public int getPassengerCabin() {
-        return passengerCabin;
+    public int getAvailableCabin() {
+        return availableCabin;
     }
 
-    public void setPassengerCabin(int passengerCabin) {
-        this.passengerCabin = passengerCabin;
+    public void setAvailableCabin(int availableCabin) {
+        this.availableCabin = availableCabin;
+    }
+
+    public int getCurrentCabin() {
+        return currentCabin;
+    }
+
+    public void setCurrentCabin(int currentCabin) {
+        this.currentCabin = currentCabin;
     }
 
     public ArrayList<Cruise> getCruises() {
@@ -48,7 +56,7 @@ public class Ship {
     public String toString() {
         return "Ship name: " + shipName +
                 ", in service: " + inService +
-                ", Available Cabin: " + passengerCabin +
+                ", Available Cabin: " + (availableCabin - currentCabin) +
                 ", Cruises: " + cruises;
     }
 }
